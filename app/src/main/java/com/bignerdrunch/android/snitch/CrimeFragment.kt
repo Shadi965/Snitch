@@ -16,6 +16,7 @@ class CrimeFragment : Fragment() {
     private lateinit var titleField: EditText
     private lateinit var dateButton: Button
     private lateinit var solvedCheckBox: CheckBox
+    private lateinit var requiresPolice: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,7 @@ class CrimeFragment : Fragment() {
         titleField = view.findViewById(R.id.crime_title) as EditText
         dateButton = view.findViewById(R.id.crime_date) as Button
         solvedCheckBox = view.findViewById(R.id.crime_solved) as CheckBox
+        requiresPolice = view.findViewById(R.id.crime_requires_police) as CheckBox
         dateButton.apply {
             text = crime.date.toString()
             isEnabled = false
@@ -62,6 +64,12 @@ class CrimeFragment : Fragment() {
         solvedCheckBox.apply {
             setOnCheckedChangeListener { _, b ->
                 crime.isSolved = isChecked
+            }
+        }
+
+        requiresPolice.apply {
+            setOnCheckedChangeListener { _, b ->
+                crime.requiresPolice = isChecked
             }
         }
     }
